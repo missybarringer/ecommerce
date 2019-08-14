@@ -1,7 +1,6 @@
-import React, { useState } from "react"
-
+import React from "react"
 import Layout from "../components/layout"
-import Product from "../components/product"
+import Products from "../components/products"
 import SEO from "../components/seo"
 
 const IndexPage = () => {
@@ -9,9 +8,7 @@ const IndexPage = () => {
   <Layout>
     <SEO title="Home" />
     <div>
-      <Product />
-      <Product />
-      <Product />
+      <Products />
     </div>
   </Layout>
 )}
