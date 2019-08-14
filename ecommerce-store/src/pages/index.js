@@ -7,16 +7,31 @@ import SEO from "../components/seo"
 
 const IndexPage = () => {
   const stripe = window.Stripe("pk_test_Q0pwIJG2dqeCmpkhSxyEXmJs00fkLGcSYc")
+
+  const placeOrder = sku => {
+  stripe.redirectToCheckout({
+    items: [
+      {
+        sku,
+        quantity: 1,
+      }
+    ],
+    successUrl: "http://localhost:8000/sucess",
+    cancelUrl: "http://localhost:8000/cancel",
+  })
+}
+
  return (
   <Layout>
     <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
+    <h1>WebWabiSabi Store</h1>
+    <div>
+      <article>
+        <img src="https://picsum.photos/200/300" alt=""/>
+        <h3>WWS T-shirt</h3>
+        <button onClick={() => placeOrder("sku_FcMf94GZ1kfqg4")}>Buy Me</button>
+      </article>
     </div>
-    <Link to="/page-2/">Go to page 2</Link>
   </Layout>
 )}
 
