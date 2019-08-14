@@ -31,12 +31,23 @@ query AllProducts {
 `;
 const Products = () => {
     return (
-        <StaticQuery query = {PRODUCTS_QUERY} 
+        <StaticQuery 
+        query = {PRODUCTS_QUERY} 
             render={({allStripeSku, allStripeProduct}) => {
-                    return allStripeProduct.edges.map(product => (
-                        <Product key={product.node} skus={allStripeSku.edges} product={product.node} />
-                    ))
-                }}
+                    return allStripeProduct.edges.map(product => {
+                        const skus = allStripeSku.edges.filter(
+                            sku =>
+                            sku.node.product.id === product.node.id
+                        )
+                        return (
+                        <Product 
+                        key={product.node} 
+                        skus={skus} 
+                        product={product.node} 
+                        />
+                    )
+                })
+            }}
         />
     )
 }
